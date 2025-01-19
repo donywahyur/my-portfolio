@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --card: #e7eef4;
+  --card-foreground: #0a0a0a;
+  --popover: #e7eef4;
+  --popover-foreground: #0a0a0a;
+  --primary: #0aff9d;
+  --primary-foreground: #525252;
+  --secondary: #015565;
+  --secondary-foreground: #161616;
+  --muted: #d1d8df;
+  --muted-foreground: #777777;
+  --accent: #d1d8df;
+  --accent-foreground: #0b0b0b;
+  --destructive: #b40000;
+  --destructive-foreground: #161616;
+  --border: #afb6bd;
+  --input: #afb6bd;
+  --ring: #0b0b0b;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #111;
+  --foreground: #f5f5f5;
+  --card: #1d2224;
+  --card-foreground: #fafafa;
+  --popover: #1d2224;
+  --popover-foreground: #fafafa;
+  --primary: #0aff9d;
+  --primary-foreground: #d4d4d4;
+  --secondary: #7e9199;
+  --secondary-foreground: #fafafa;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #262626;
+  --accent-foreground: #fafafa;
+  --destructive: #693030;
+  --destructive-foreground: #fafafa;
+  --border: #262626;
+  --input: #262626;
+  --ring: #d9d9d9;
+}
+
+body {
+  @apply font-mono;
+}
+
+.selection-bg {
+  @apply selection:bg-highlight selection:text-black;
+}
+
+.horizontal-underline {
+  @apply border-b-0 bg-gradient-to-r from-[#0aff9d] to-[#0aff9d] bg-no-repeat;
+  background-size: 0 2px;
+  background-position: 0 100%;
+  transition: background-size 0.4s ease-in-out;
+}
+
+.horizontal-underline:hover {
+  @apply border-b-0;
+  background-size: 100% 2px;
+  background-position: 0 100%;
+}
+
+.hidden-element {
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateY(8px) translateZ(0px);
+}
+
+.show-element {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+.typing-effect {
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 0.5s steps(100) 0.5s forwards,
+    typing-blink 0.5s step-end infinite;
+}
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes typing-blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+  line-height: 1.3333333;
+}
