@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - /home/docker/my-portfolio:/app
+      - /app/node_modules
+      - public:/app/public # Named volume
+
+volumes:
+  public: # Define the 'public' volume
