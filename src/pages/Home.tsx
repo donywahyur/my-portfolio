@@ -145,7 +145,7 @@ export default function Home() {
                     <div className="group relative">
                       <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-[#0aff9d] opacity-50 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>{" "}
                       <a
-                        href="https://"
+                        href="https://drive.google.com/file/d/1js_yTgiLZ51Xbg_Tx8rPhy3rxyDLvqPs/view?usp=sharing"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-[#0aff9d]"

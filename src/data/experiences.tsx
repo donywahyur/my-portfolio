@@ -27,8 +27,8 @@ const experiences: Experience[] = [
   {
     company: "Klinik Malang Eye Center",
     position: "Freelance Programmer",
-    date: "Jun 2022 - Present",
-    duration: "2 years +",
+    date: "2022 - 2024",
+    duration: "2 years",
     location: "Malang, East Java, Indonesia",
     imageUrl: mecImage,
     description: [
@@ -40,8 +40,8 @@ const experiences: Experience[] = [
   {
     company: "Klinik Kepanjen Eye Center",
     position: "Freelance Programmer",
-    date: "Jun 2022 - Present",
-    duration: "2 years +",
+    date: "2022 - 2024",
+    duration: "2 years",
     location: "Malang, East Java, Indonesia",
     imageUrl: keceImage,
     description: [

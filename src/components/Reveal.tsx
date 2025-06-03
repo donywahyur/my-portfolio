@@ -19,7 +19,7 @@ export const Reveal = ({ children, index }: Props) => {
   }, [isInView]);
 
   return (
-    <motion.div
+    <motion.span
       variants={{
         hidden: {
           opacity: 0,
@@ -33,9 +33,8 @@ export const Reveal = ({ children, index }: Props) => {
       initial="hidden"
       animate={mainControls}
       transition={{ duration: 0.5, delay: 0.15 * (index || 1) }}
-      ref={ref}
-    >
+      ref={ref}>
       {children}
-    </motion.div>
+    </motion.span>
   );
 };
