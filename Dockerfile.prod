@@ -1,0 +1,24 @@
+# Stage 1: Build the app
+FROM node:18-alpine AS builder
+WORKDIR /app
+
+# Copy package files first (better caching)
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+RUN npm install --frozen-lockfile  # or yarn/pnpm equivalent
+
+# Copy source and build
+COPY . .
+RUN npm run build  # Outputs to `/app/dist`
+
+# Stage 2: Serve with a lightweight HTTP server (no Nginx needed)
+FROM node:18-alpine
+WORKDIR /app
+
+# Install `serve` for static file serving
+RUN npm install -g serve
+
+# Copy built files from builder
+COPY --from=builder /app/dist ./dist
+
+# Dokploy typically manages the port/expose, so just define the command
+CMD ["serve", "-s", "dist", "-l", "tcp://0.0.0.0:3000"]

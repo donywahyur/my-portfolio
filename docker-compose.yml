@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   frontend:
     build:
@@ -7,9 +7,13 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - /home/docker/my-portfolio:/app
+      - ./:/app
       - /app/node_modules
-      - public:/app/public # Named volume
+      - public_portfolio:/app/public # Named volume
 
 volumes:
-  public: # Define the 'public' volume
+  public_portfolio: # Define the 'public' volume
+
+networks:
+  dokploy-networks:
+    external: true
