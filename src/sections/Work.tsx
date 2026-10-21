@@ -45,16 +45,6 @@ export default function Work({ index, featuredProjects, moreProjects }: Props) {
                 <span className="origin-left -rotate-2 font-hand text-2xl font-bold text-lime">
                   {p.coverNote}
                 </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-lg border-[1.5px] border-lime px-2.5 py-[5px] font-mono text-xs text-[#eef5ee]"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
               </div>
             )}
             <div className="flex flex-1 flex-col gap-2 px-5 pb-5 pt-[18px]">
