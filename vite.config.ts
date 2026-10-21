@@ -8,9 +8,5 @@ export default defineConfig({
         host: "0.0.0.0", // Bind to all network interfaces inside the container
         port: 5173, // Ensure the port matches your Docker setup
         strictPort: true, // Fail immediately if the port is unavailable
-        hmr: {
-            protocol: "wss", // Use WebSockets over HTTPS
-            host: "dynodhan.xyz", // Use the domain where the browser is running
-        },
     },
 });

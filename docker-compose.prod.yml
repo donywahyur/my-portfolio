@@ -1,7 +1,8 @@
 # Production for Coolify (Docker Compose build pack). The image is built by
 # GitHub Actions (.github/workflows/deploy.yml) and pulled from GHCR;
 # Coolify does not build it. SERVICE_FQDN_FRONTEND_3000 routes the domain
-# set on the frontend service in Coolify's UI to port 3000.
+# set on the frontend service in Coolify's UI (https://donyramadhan.com)
+# to port 3000.
 
 services:
   frontend:
