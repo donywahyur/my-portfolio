@@ -1,15 +1,13 @@
 import type { ProjectTag as Tag } from "../data/projects";
 
+// "live" and "production" are the default state of a project, so only the
+// exceptions (private, open source, thesis) get a tag.
+const HIDDEN: Tag[] = ["live", "production"];
+
 export default function ProjectTag({ tag }: { tag: Tag }) {
-  const filled = tag === "live" || tag === "production";
+  if (HIDDEN.includes(tag)) return null;
   return (
-    <span
-      className={`rounded-full px-[9px] py-0.5 font-mono text-[11px] ${
-        filled
-          ? "border-[1.5px] border-edge bg-lime font-semibold text-[#0a0f0d]"
-          : "border border-line-strong text-accent"
-      }`}
-    >
+    <span className="rounded-full border border-line-strong px-[9px] py-0.5 font-mono text-[11px] text-accent">
       {tag}
     </span>
   );
