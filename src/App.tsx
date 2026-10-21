@@ -1,28 +1,37 @@
-import { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
-import Footer from "./layouts/Footer";
-import Header from "./layouts/Header";
-import Preloader from "./components/Preloader";
+import Sidebar from "./components/Sidebar";
+import sections from "./data/sections";
+import usePortfolioContent from "./hooks/usePortfolioContent";
+import useScrollSpy from "./hooks/useScrollSpy";
+import useTheme from "./hooks/useTheme";
+import About from "./sections/About";
+import Contact from "./sections/Contact";
+import Education from "./sections/Education";
+import Experience from "./sections/Experience";
+import Skills from "./sections/Skills";
+import Work from "./sections/Work";
 
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
-const Skills = lazy(() => import("./pages/Skill"));
-const Projects = lazy(() => import("./pages/Project"));
+const sectionIds = sections.map((s) => s.id);
 
 export default function App() {
-    return (
-        <div className="flex flex-col relative mx-auto min-h-screen max-w-3xl bg-background px-2 font-sans antialiased xl:max-w-3xl xl:px-0 transition-opacity duration-300">
-            <Header />
-            <Suspense fallback={<Preloader />}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/skills" element={<Skills />} />
-                    <Route path="/projects" element={<Projects />} />
-                </Routes>
-            </Suspense>
-            <hr className="border-gray-200 dark:border-gray-700 mt-4"></hr>
-            <Footer />
-        </div>
-    );
+  const content = usePortfolioContent();
+  const active = useScrollSpy(sectionIds);
+  const { isDark, toggle } = useTheme();
+
+  return (
+    <div className="mx-auto grid max-w-[1080px] grid-cols-1 gap-10 px-7 pt-[clamp(40px,6vw,72px)] lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-x-[clamp(40px,7vw,88px)]">
+      <Sidebar profile={content.profile} active={active} isDark={isDark} onToggleTheme={toggle} />
+      <main className="min-w-0 pb-[72px]">
+        <About index={1} profile={content.profile} />
+        <Skills index={2} skills={content.skills} />
+        <Experience index={3} experiences={content.experiences} />
+        <Work
+          index={4}
+          featuredProjects={content.featuredProjects}
+          moreProjects={content.moreProjects}
+        />
+        <Education index={5} educations={content.educations} />
+        <Contact index={6} email={content.profile.email} />
+      </main>
+    </div>
+  );
 }
