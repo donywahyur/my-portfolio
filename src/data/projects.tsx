@@ -1,127 +1,136 @@
-import {
-    apiProjectImage,
-    siakadProjectImage,
-    mecProjectImage,
-    hexamProjectImage,
-    limsProjectImage,
-    nihrProjectImage,
-    signmateProjectImage,
-    sphaProjectImage,
-    larazillowProjectImage,
-    startupProjectImage,
-    feederProjectImage,
-    sipointProjectImage,
-} from "./images";
+import siakadImage from "../assets/projects/siakad.png";
+import simrsImage from "../assets/projects/mec.png";
 
-export const projects = [
-    {
-        name: "SIAKAD",
-        link: "https://demo.siakad.net",
-        image: siakadProjectImage,
-        description:
-            "SIAKAD (Sistem Informasi Akademik) is a comprehensive project designed for college students, integrating academic management with a banking system to provide a seamless and efficient experience. The platform offers essential features such as course registration, grades tracking, and scheduling, while also incorporating financial functionalities like tuition payment processing, balance inquiries, and transaction history. This unique combination allows students to manage both their academic and financial needs within a single, intuitive platform.",
-        techs: ["MySQL", "CodeIgniter", "JavaScript"],
-    },
-    {
-        name: "Malang Eye Center",
-        link: "https://apps.malangeyecenter.net",
-        image: mecProjectImage,
-        description:
-            "Malang Eye Center is a specialized hospital system designed to streamline and enhance the management of eye care services. This system offers comprehensive features, including patient registration, appointment scheduling, medical record management, and billing processes, all tailored to meet the specific needs of an eye care facility. With a focus on efficiency and user-friendly design, the system ensures smooth coordination between patients, medical staff, and administrative teams. ",
-        techs: ["MySQL", "CodeIgniter", "JavaScript"],
-    },
-    {
-        name: "HEXAM",
-        link: "https://hexam.kimedaka.com",
-        image: hexamProjectImage,
-        description:
-            "Hexam is an advanced exam app designed for both teachers and students, creating an interactive and efficient platform for assessments. Teachers can use the app to create, manage, and schedule quizzes, while leveraging features like question banks, grading automation, and detailed analytics to streamline their workflow. Students, on the other hand, can easily access and take exams, view their results in real-time, and track their progress over time.",
-        techs: ["MySQL", "CodeIgniter", "JavaScript"],
-    },
-    {
-        name: "LIMS PT. JX Nippon",
-        link: "https://",
-        image: limsProjectImage,
-        description:
-            "LIMS (Laboratory Information Management System) is a specialized system designed to optimize and manage processes in oil manufacturing. This system provides robust features for monitoring production workflows, tracking raw materials, managing quality control, and generating detailed reports. With a focus on precision and efficiency, LIMS ensures that every stage of the oil-making process adheres to industry standards and best practices.",
-        techs: ["MySQL", "CodeIgniter", "JavaScript"],
-    },
-    {
-        name: "NIHR",
-        link: "https://nihr.siakad.net",
-        image: nihrProjectImage,
-        description:
-            "NIHR (National Institute for Health Research) is a budgeting system specifically designed to assist doctors in managing their financial resources for medical projects and research. This system provides tools for creating and tracking budgets, allocating funds to various categories such as research, equipment, and operational costs, and generating detailed financial reports. With an intuitive interface, NIHR ensures that doctors can easily manage their funding, making it easier to stay within budget while maintaining the financial integrity of their medical initiatives.",
-        techs: ["MySQL", "Laravel", "JavaScript", "Tailwind CSS"],
-    },
-    {
-        name: "SignMate",
-        link: "https://github.com/donywahyur/hackfest_signmate",
-        image: signmateProjectImage,
-        description:
-            "Sign Mate is an innovative app designed to bridge communication gaps by translating sign language gestures into written alphabetic characters. The app uses advanced recognition technology to accurately interpret hand movements, finger placements, and gestures, converting them into text in real-time. This makes it easier for users to communicate with individuals who may have hearing impairments or those unfamiliar with sign language. ",
-        techs: ["Firebase", "Python", "Flutter", "Sqlite"],
-    },
-    {
-        name: "SPHA",
-        link: "https://github.com/donywahyur/TUGAS-AKHIR",
-        image: sphaProjectImage,
-        description:
-            "SPHA (Sistem Prediksi Harga Ayam) isan advanced system designed to predict the price of chicken using a GRU (Gated Recurrent Unit) algorithm. This system leverages historical data, market trends, and various influencing factors such as weather, supply, and demand to generate accurate price forecasts. By utilizing the GRU algorithm, SPHA efficiently analyzes time-series data to capture patterns and fluctuations in poultry pricing, providing reliable predictions. ",
-        techs: ["MySQL", "Python", "Flask", "Tailwind CSS", "React"],
-    },
-    {
-        name: "Larazillow",
-        link: "https://github.com/donywahyur/larazillow11",
-        image: larazillowProjectImage,
-        description:
-            "Larazillow is an innovative project designed to facilitate land bidding, where users can place bids on available properties in a transparent and efficient manner. The platform allows users to view detailed land listings, monitor bid progress, and interact with other participants in real-time.",
-        techs: ["MySQL", "Laravel", "Vue", "Tailwind CSS"],
-    },
-    {
-        name: "Startup Project",
-        link: "https://github.com/donywahyur/go_startup_api",
-        image: startupProjectImage,
-        description:
-            "The Startup Project is an initiative focused on collecting funds for a specific purpose, aimed at supporting a new business or community-driven initiative. This platform allows individuals or organizations to contribute money towards a common goal, whether it be for launching a product, funding a social cause, or supporting a project that requires financial backing.",
-        techs: ["MySQL", "Go lang", "Nuxt 3", "Tailwind CSS", , "Docker"],
-    },
+export type ProjectTag = "production" | "live" | "private" | "open source" | "thesis";
 
-    {
-        name: "Restaurant API",
-        link: "https://github.com/donywahyur/go-restaurant-app",
-        image: apiProjectImage,
-        description:
-            "Restaurant API is a versatile interface that provides access to a range of features for managing restaurant-related data and operations. Through this API, developers can integrate restaurant services into mobile apps, websites, or third-party platforms, enabling seamless user experiences for both customers and restaurant staff. It can also provide real-time availability of tables, order status updates, and dynamic pricing.",
-        techs: ["PostgreSQL", "Go lang", "Docker"],
-    },
+export interface FeaturedProject {
+  name: string;
+  tag: ProjectTag;
+  stack: string[];
+  description: string;
+  image?: string;
+  // Shown instead of a screenshot when there is no image.
+  coverNote?: string;
+}
 
-    {
-        name: "Social App",
-        link: "https://github.com/donywahyur/go_social_app",
-        image: apiProjectImage,
-        description:
-            "A Social App built using Go is a platform designed for users to connect, share, and engage with each other in a digital environment. The app could include features like user profiles, friend requests, posts, comments, likes, and multimedia sharing, as well as personalized news feeds.",
-        techs: ["PostgreSQL", "Go lang", "Docker"],
-    },
+export interface Project {
+  name: string;
+  tag: ProjectTag;
+  stack: string[];
+  description: string;
+  link?: string;
+}
 
-    {
-        name: "Feeder Bridge",
-        link: "",
-        image: feederProjectImage,
-        description:
-            "A Feeder Bridge is a middleware application designed to facilitate seamless data integration between a university's Academic Information System (commonly known as SIAKAD) and Neo Feeder, the centralized data system managed by Indonesia's Ministry of Education. Its primary function is to automate the process of synchronizing academic data—such as student information, course registrations, grades, and curriculum structures—ensuring compliance with national standards and regulations.",
-        techs: ["MySQL", "Tailwind CSS", "Laravel", "Docker"],
-    },
-
-    {
-        name: "SiPoint Desktop",
-        link: "",
-        image: sipointProjectImage,
-        description:
-            "This application was developed to support PPOB (Payment Point Online Bank) transactions at PT Teleanjar Mitra Global. It facilitates various bill payments by providing a reliable and efficient platform connected to multiple service providers.",
-        techs: ["Java"],
-    },
+export const featuredProjects: FeaturedProject[] = [
+  {
+    name: "Jobseeker App & Partners",
+    tag: "production",
+    stack: ["Java", "MongoDB", "Redis", "AWS"],
+    description:
+      "Mobile-first social recruitment platform helping Indonesian SMEs source, match and hire talent in-app.",
+    coverNote: "hiring for Indonesian SMEs",
+  },
+  {
+    name: "Jobseeker HCMS",
+    tag: "production",
+    stack: ["NestJS", "PostgreSQL", "Redis", "gRPC"],
+    description:
+      "Enterprise HR technology platform providing end-to-end Human Capital Management software for web and mobile.",
+    coverNote: "end-to-end HR platform",
+  },
+  {
+    name: "SIAKAD",
+    tag: "live",
+    stack: ["CodeIgniter", "MySQL", "JavaScript", "REST API"],
+    description:
+      "Academic information system for universities, integrating academic management with a banking system for tuition.",
+    image: siakadImage,
+  },
+  {
+    name: "SIMRS",
+    tag: "live",
+    stack: ["CodeIgniter", "MySQL", "JavaScript", "REST API"],
+    description:
+      "Eye hospital management system: patient registration, appointments, medical records and billing.",
+    image: simrsImage,
+  },
 ];
 
-export default projects;
+export const moreProjects: Project[] = [
+  {
+    name: "Feeder Bridge",
+    tag: "private",
+    stack: ["Laravel", "MySQL", "Redis", "Tailwind CSS"],
+    description:
+      "Middleware syncing a university's SIAKAD with Neo Feeder, the Ministry of Education's central data system.",
+  },
+  {
+    name: "SiPoint Desktop",
+    tag: "private",
+    stack: ["Java", "REST API"],
+    description:
+      "PPOB bill-payment desktop app for PT Teleanjar Mitra Global, connected to multiple service providers.",
+  },
+  {
+    name: "HEXAM",
+    tag: "live",
+    stack: ["CodeIgniter", "MySQL", "JavaScript"],
+    description: "Exam platform for teachers and students with question banks and scheduled quizzes.",
+    link: "https://hexam.kimedaka.com",
+  },
+  {
+    name: "NIHR",
+    tag: "live",
+    stack: ["Laravel", "MySQL", "Tailwind CSS"],
+    description: "Budgeting system for doctors managing funds for medical research projects.",
+    link: "https://nihr.siakad.net",
+  },
+  {
+    name: "LIMS — PT. JX Nippon",
+    tag: "private",
+    stack: ["CodeIgniter", "MySQL"],
+    description: "Lab information system for oil manufacturing: production, raw materials and quality.",
+  },
+  {
+    name: "SignMate",
+    tag: "open source",
+    stack: ["Flutter", "Python", "Firebase"],
+    description: "Translates sign-language gestures into written letters. Hackfest project.",
+    link: "https://github.com/donywahyur/hackfest_signmate",
+  },
+  {
+    name: "SPHA",
+    tag: "thesis",
+    stack: ["Python", "Flask", "React"],
+    description: "Chicken price prediction with a GRU model.",
+    link: "https://github.com/donywahyur/TUGAS-AKHIR",
+  },
+  {
+    name: "Larazillow",
+    tag: "open source",
+    stack: ["Laravel", "Vue", "MySQL"],
+    description: "Land bidding platform with listings and bid tracking.",
+    link: "https://github.com/donywahyur/larazillow11",
+  },
+  {
+    name: "Startup Project",
+    tag: "open source",
+    stack: ["Go", "Nuxt 3", "Docker"],
+    description: "Crowdfunding API for new businesses and community causes.",
+    link: "https://github.com/donywahyur/go_startup_api",
+  },
+  {
+    name: "Restaurant API",
+    tag: "open source",
+    stack: ["Go", "PostgreSQL", "Docker"],
+    description: "REST API for restaurant data and operations.",
+    link: "https://github.com/donywahyur/go-restaurant-app",
+  },
+  {
+    name: "Social App",
+    tag: "open source",
+    stack: ["Go", "PostgreSQL", "Docker"],
+    description: "Social network backend: profiles, posts and comments.",
+    link: "https://github.com/donywahyur/go_social_app",
+  },
+];
