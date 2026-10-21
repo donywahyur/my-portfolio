@@ -1,17 +1,21 @@
 # Stage 1: Build the app
-FROM node:18-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
+# Strapi address baked into the bundle at build time (Vite inlines VITE_*).
+ARG VITE_STRAPI_URL=https://strapi.donyramadhan.com
+ENV VITE_STRAPI_URL=$VITE_STRAPI_URL
+
 # Copy package files first (better caching)
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npm install --frozen-lockfile  # or yarn/pnpm equivalent
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # Copy source and build
 COPY . .
 RUN npm run build  # Outputs to `/app/dist`
 
 # Stage 2: Serve with a lightweight HTTP server (no Nginx needed)
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 
 # Install `serve` for static file serving
@@ -20,5 +24,5 @@ RUN npm install -g serve
 # Copy built files from builder
 COPY --from=builder /app/dist ./dist
 
-# Dokploy typically manages the port/expose, so just define the command
+EXPOSE 3000
 CMD ["serve", "-s", "dist", "-l", "tcp://0.0.0.0:3000"]

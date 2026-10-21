@@ -1,23 +1,12 @@
-version: "3.8"
+# Production for Coolify (Docker Compose build pack). The image is built by
+# GitHub Actions (.github/workflows/deploy.yml) and pulled from GHCR;
+# Coolify does not build it. SERVICE_FQDN_FRONTEND_3000 routes the domain
+# set on the frontend service in Coolify's UI to port 3000.
+
 services:
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.prod
-    volumes:
-      - /app/node_modules
-      - public_portfolio:/app/public
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`dynodhan.xyz`)"
-      - "traefik.http.routers.frontend.entrypoints=websecure"
-      - "traefik.http.routers.frontend.tls=true"
-      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
-      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
-
-volumes:
-  public_portfolio:
-
-networks:
-  dokploy-networks:
-    external: true
+    image: ghcr.io/donywahyur/my-portfolio:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - SERVICE_FQDN_FRONTEND_3000
